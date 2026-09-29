@@ -1,0 +1,16 @@
+[Unit]
+Description=Luka S100 hardware stack: %i (commissioning only)
+After=network-online.target
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100/ddsm_car_ws
+EnvironmentFile=-/home/sunrise/luka_s100/audio.env
+ExecStart=/bin/bash /home/sunrise/luka_s100/ddsm_car_ws/start_nx_%i.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

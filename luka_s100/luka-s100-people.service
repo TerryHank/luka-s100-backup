@@ -1,0 +1,21 @@
+[Unit]
+Description=Luka S100 person and face monitor (requires connected camera)
+After=luka-s100-vision.service
+Requires=luka-s100-vision.service
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100/person_follow
+Environment=NX_PEOPLE_CAMERA=stereo_shared
+Environment=NX_PERSON_DETECTOR=bpu
+Environment=NX_STEREO_CALIBRATION_JSON=/home/sunrise/luka_s100/stereo_calibration/captures_20260924_163409/calibration_display.json
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/sunrise/luka_s100/person_follow/server.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

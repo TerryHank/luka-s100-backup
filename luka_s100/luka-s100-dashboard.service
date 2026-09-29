@@ -1,0 +1,15 @@
+[Unit]
+Description=Luka S100 software-only dashboard
+After=network-online.target
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100/ddsm_car_ws
+ExecStart=/home/sunrise/luka_s100/start_s100_dashboard.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

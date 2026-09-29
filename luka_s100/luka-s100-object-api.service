@@ -1,0 +1,15 @@
+[Unit]
+Description=Luka S100 BPU COCO detector API
+After=network-online.target
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100
+ExecStart=/usr/bin/python3 /home/sunrise/luka_s100/s100_object_api.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

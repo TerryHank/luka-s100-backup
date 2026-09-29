@@ -1,0 +1,20 @@
+[Unit]
+Description=Luka S100 stereo camera and object memory (requires connected camera)
+After=network-online.target luka-s100-object-api.service luka-s100-dashboard.service
+Requires=luka-s100-object-api.service luka-s100-dashboard.service
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100/locateanything_trial_20260907
+Environment=NX_CAMERA_SOURCE=stereo_uvc
+Environment=NX_STEREO_HIGH_RES=1
+Environment=NX_STEREO_FULL_FOV_PEOPLE=1
+Environment=NX_STEREO_CALIBRATION_JSON=/home/sunrise/luka_s100/stereo_calibration/captures_20260924_163409/calibration_display.json
+ExecStart=/usr/bin/python3 /home/sunrise/luka_s100/locateanything_trial_20260907/live_app.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

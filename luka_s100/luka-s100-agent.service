@@ -1,0 +1,16 @@
+[Unit]
+Description=Luka S100 local command agent (dry run)
+After=network-online.target luka-s100-chat.service
+Requires=luka-s100-chat.service
+
+[Service]
+Type=simple
+User=sunrise
+Group=sunrise
+WorkingDirectory=/home/sunrise/luka_s100/ddsm_car_ws
+ExecStart=/bin/bash /home/sunrise/luka_s100/ddsm_car_ws/start_nx_agent.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
